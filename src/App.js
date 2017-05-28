@@ -10,20 +10,27 @@ import {
   Text,
   View
 } from 'react-native';
+import firebase from 'firebase';
 
 export default class App extends Component {
+
+  componentWillMount() {
+    var config = {
+      apiKey: "AIzaSyCyWPmSYltuwnG_XJdtAWVqRMLYeL2vym0",
+      authDomain: "crmreactnative.firebaseapp.com",
+      databaseURL: "https://crmreactnative.firebaseio.com",
+      projectId: "crmreactnative",
+      storageBucket: "crmreactnative.appspot.com",
+      messagingSenderId: "249954532047"
+    };
+    firebase.initializeApp(config);
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
           Welcome to React Native! Sanel
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
         </Text>
       </View>
     );
