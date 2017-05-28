@@ -11,6 +11,7 @@ import {
   View
 } from 'react-native';
 import firebase from 'firebase';
+import Login from './Login';
 
 export default class App extends Component {
 
@@ -32,6 +33,7 @@ export default class App extends Component {
         <Text style={styles.welcome}>
           Welcome to React Native! Sanel
         </Text>
+        <Login />
       </View>
     );
   }
