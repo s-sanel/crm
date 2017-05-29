@@ -4,12 +4,17 @@
  * @flow
  */
 
- import React, { Component } from 'react';
- import { StyleSheet, Text, View } from 'react-native';
- import firebase from 'firebase';
- import Login from './Login';
- import Loader from './Loader';
- import PeopleList from './PeopleList';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import firebase from 'firebase';
+import Login from './Login';
+import Loader from './Loader';
+import PeopleList from './PeopleList';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import reducers from '../reducers/PeopleReducer';
+
+const store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 export default class App extends Component {
 
@@ -55,9 +60,11 @@ export default class App extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        {this.renderInitialView()}
-      </View>
+      <Provider store={store}>
+        <View style={styles.container}>
+          {this.renderInitialView()}
+        </View>
+      </Provider>
     );
   }
 }
