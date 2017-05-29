@@ -4,14 +4,10 @@
  * @flow
  */
 
-import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
-import firebase from 'firebase';
-import Login from './Login';
+ import React, { Component } from 'react';
+ import { StyleSheet, Text, View } from 'react-native';
+ import firebase from 'firebase';
+ import Login from './Login';
 
 export default class App extends Component {
 
@@ -42,15 +38,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
   },
 });
