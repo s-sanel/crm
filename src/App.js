@@ -8,8 +8,17 @@
  import { StyleSheet, Text, View } from 'react-native';
  import firebase from 'firebase';
  import Login from './Login';
+ import Loader from './Loader';
+ import PeopleList from './PeopleList';
 
 export default class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      loggedIn: null
+    };
+  }
 
   componentWillMount() {
     var config = {
@@ -21,12 +30,33 @@ export default class App extends Component {
       messagingSenderId: "249954532047"
     };
     firebase.initializeApp(config);
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ loggedIn: true });
+      } else {
+        this.setState({ loggedIn: false })
+      }
+    })
+  }
+
+  renderInitialView() {
+    switch (this.state.loggedIn) {
+      case true:
+        return <PeopleList />;
+        break;
+      case false:
+        return <Login />;
+        break;
+      default:
+        return <Loader size='large' />;
+    }
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Login />
+        {this.renderInitialView()}
       </View>
     );
   }
