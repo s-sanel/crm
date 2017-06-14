@@ -5,9 +5,9 @@
  */
 
 import React, { Component } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, ListView } from 'react-native';
 import { connect } from 'react-redux';
-import PersonItem from './PersonItem';
+import PeopleItem from './PeopleItem';
 
 const styles = StyleSheet.create({
   container: {
@@ -24,7 +24,7 @@ class PeopleList extends Component {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2,
     });
-    this.dataSource = ds.coloneWithRows(this.props.people);
+    this.dataSource = ds.cloneWithRows(this.props.people);
   }
 
   render() {
@@ -35,7 +35,7 @@ class PeopleList extends Component {
           enableEmptySections={true}
           dataSource={this.dataSource}
           renderRow={(rowData) =>
-            <PersonItem people={rowData} />
+            <PeopleItem people={rowData} />
           }
         />
       </View>
